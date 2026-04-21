@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0a1128" />
+<title>בלוג · I.C.E גיורא מראני — אמבטיות קרח, נשימה ומיינדפולנס</title>
+<meta name="description" content="מאמרים ותובנות מגיורא מראני וטל פרנס — על קרח, נשימה, נוכחות, חוסן מנטלי ובריאות הוליסטית." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ice-israel.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<canvas id="snow"></canvas>
+
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand" aria-label="I.C.E — גיורא מראני">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-2.png" alt="לוגו גיורא מראני">
+      <span class="brand-name">I.C.E<small>גיורא מראני</small></span>
+    </a>
+    <nav class="menu" aria-label="תפריט ראשי">
+      <a href="index.html#about">על גיורא</a>
+      <a href="index.html#services">סדנאות</a>
+      <a href="index.html#course">קורס מדריכים</a>
+      <a href="index.html#testimonials">המלצות</a>
+      <a href="blog.html" class="active">בלוג</a>
+      <a href="index.html#contact">צרו קשר</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="index.html#gift">הדרכה חינמית</a>
+      <a class="btn btn-primary" href="https://wa.me/+972523528888" target="_blank" rel="noopener">קבעו סדנה</a>
+      <button class="burger" id="burger" aria-label="פתח תפריט"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile" id="mobile" aria-label="תפריט מובייל">
+  <a href="index.html#about">על גיורא</a>
+  <a href="index.html#services">סדנאות</a>
+  <a href="index.html#course">קורס מדריכים</a>
+  <a href="index.html#testimonials">המלצות</a>
+  <a href="blog.html" class="active">בלוג</a>
+  <a href="index.html#contact">צרו קשר</a>
+  <a href="index.html#gift" class="btn btn-ghost">הדרכת נשימה חינמית</a>
+  <a class="btn btn-primary" href="https://wa.me/+972523528888" target="_blank" rel="noopener">שלחו וואטסאפ</a>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="kicker reveal in">הבלוג של I.C.E</span>
+    <h1 class="reveal in">תוכן סביב קרח, נשימה ונוכחות</h1>
+    <p class="reveal in">מאמרים ותובנות מהשטח — מהפרקטיקה של אמבטיות קרח, סדנאות נשימה, ליווי אישי והתבוננות. נכתבו על ידי גיורא מראני וטל פרנס.</p>
+  </div>
+</section>
+
+<section class="blog-list">
+  <div class="container">
+    <div class="blog-grid">
+
+      <a class="post-card reveal" href="posts/temperature.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%9C%D7%9C%D7%90-%D7%A9%D7%9D-3.png" alt="טמפרטורה מומלצת לאמבטיית קרח"></div>
+        <div class="body">
+          <span class="date">מדריך מקצועי</span>
+          <h3>מהי הטמפרטורה המומלצת לאמבטיית קרח?</h3>
+          <p>אמבטיות קרח הפכו לכלי פופולרי לשיפור הבריאות, אך רבים אינם מודעים לטווח הרחב של טמפרטורות — וכל אחת משפיעה אחרת על הגוף והנפש.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+      <a class="post-card reveal delay-1" href="posts/company-events.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%98%D7%91%D7%99%D7%9C%D7%94-%D7%91%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%99%D7%AA-%D7%A7%D7%A8%D7%97.jpg" alt="אמבטיות קרח לאירועי חברה"></div>
+        <div class="body">
+          <span class="date">מהשטח</span>
+          <h3>אמבטיות קרח לאירועי חברה</h3>
+          <p>בשנים האחרונות הנחיתי עשרות סדנאות אמבטיות קרח ונשימה לאירועי חברה — זו חוויה ששוברת מחסומים ונשארת עם המשתתפים הרבה אחרי הטבילה.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+      <a class="post-card reveal delay-2" href="posts/why-ice.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2024/07/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%91%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%99%D7%AA-%D7%A7%D7%A8%D7%97-%D7%9E%D7%9C%D7%9E%D7%A2%D7%9C%D7%94-e1737545153251.jpg" alt="טבילה באמבטיות קרח"></div>
+        <div class="body">
+          <span class="date">מדע ופרקטיקה</span>
+          <h3>טבילות באמבטיות קרח — למה כולם עושים את זה?</h3>
+          <p>טבילה במים קרים נראית כמו טרנד חדש אבל זו שיטה עתיקה שמשמשת תרבויות רבות. איך זה התחיל, למה זה עובד וכיצד לעשות את זה נכון.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+      <a class="post-card reveal" href="posts/hold-space.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/04/IMG-20240713-WA0000.jpg" alt="להחזיק מרחב"></div>
+        <div class="body">
+          <span class="date">הגות</span>
+          <h3>להחזיק מרחב — מה קורה בצידה השני של האמבטיה</h3>
+          <p>על האיזון של מדריכי נשימה בקרח: להחזיק מרחב מאפשר, לראות את מי שמולנו מתמודד, ועדיין לא לשאת את המשקל במקומו.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+      <a class="post-card reveal delay-1" href="posts/gaps-and-magic.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/04/IMG_1455.jpg" alt="רווחים וקסמים"></div>
+        <div class="body">
+          <span class="date">הגות</span>
+          <h3>רווחים וקסמים</h3>
+          <p>סרנדיפיטי, קורנפלקס שנשכח במפעל וקולומבוס שחיפש את הודו — על היופי שבמה שמתגלה דווקא כשעושים רווחים, כלפי חוץ וכלפי פנים.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+      <a class="post-card reveal delay-2" href="posts/freeze-time.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/04/IMG_03611-1.jpg" alt="להקפיא את הזמן"></div>
+        <div class="body">
+          <span class="date">הגות</span>
+          <h3>להקפיא את הזמן</h3>
+          <p>טבילה במי קרח היא כל דבר פרט ללהקפיא את הזמן — היא מרחיבה אותו. רואים במיקרוסקופ של הרגע את כמות החיים שיש בהווה.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <span class="kicker reveal">קבלו השראה ישירות למייל</span>
+    <h2 class="reveal">הצטרפו לניוזלטר השקט שלנו</h2>
+    <p class="reveal">הדרכות נשימה חינמיות, תובנות מהפרקטיקה ועדכונים על סדנאות חדשות. אין ספאם. אפשר להסיר בכל רגע.</p>
+    <div class="actions reveal">
+      <a class="btn btn-primary" href="index.html#contact">הרשמו עכשיו</a>
+      <a class="btn btn-ghost" href="https://wa.me/+972523528888" target="_blank" rel="noopener">שלחו לי בוואטסאפ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-2.png" alt="">
+          <div><strong>I.C.E</strong><small>גיורא מראני</small></div>
+        </div>
+        <p>חוויות קרח, נשימה ונוכחות — כלי עבודה מעשיים לבריאות, חוסן ואיזון. לפרטנים, לקבוצות ולאירועי חברה.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/giora_marani/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+          <a href="https://www.facebook.com/people/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%95%D7%AA-%D7%A7%D7%A8%D7%97-%D7%A0%D7%A9%D7%99%D7%9E%D7%95%D7%AA-%D7%95%D7%9E%D7%99%D7%99%D7%A0%D7%93%D7%A1%D7%98/61557371516015/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://wa.me/+972523528888" target="_blank" rel="noopener" aria-label="WhatsApp">✎</a>
+        </div>
+      </div>
+      <div>
+        <h4>סדנאות</h4>
+        <ul>
+          <li><a href="index.html#services">טבילה במי קרח</a></li>
+          <li><a href="index.html#services">אוויר לנשמה — נשימות</a></li>
+          <li><a href="index.html#course">קורס מדריכים</a></li>
+          <li><a href="index.html#services">אירועי חברה</a></li>
+          <li><a href="index.html#services">ימי גיבוש</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>תוכן</h4>
+        <ul>
+          <li><a href="blog.html">בלוג</a></li>
+          <li><a href="index.html#gift">הדרכות חינמיות</a></li>
+          <li><a href="index.html#testimonials">המלצות</a></li>
+          <li><a href="index.html#about">אודות</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>יצירת קשר</h4>
+        <ul>
+          <li><a href="tel:+972523528888">052-3528888</a></li>
+          <li><a href="https://wa.me/+972523528888" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="index.html#contact">טופס יצירת קשר</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div>© 2025 כל הזכויות שמורות לגיורא מראני · I.C.E Israel</div>
+      <div>חוויית קרח, נשימה ונוכחות</div>
+    </div>
+  </div>
+</footer>
+
+<div class="float">
+  <a class="wa" href="https://wa.me/+972523528888" target="_blank" rel="noopener" aria-label="WhatsApp">✎</a>
+  <a class="tel" href="tel:+972523528888" aria-label="Call">☏</a>
+</div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

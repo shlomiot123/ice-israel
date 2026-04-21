@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0a1128" />
+<title>I.C.E · גיורא מראני — קורסי מדריכים, סדנאות נשימה ואמבטיות קרח</title>
+<meta name="description" content="I.C.E של גיורא מראני — סדנאות טבילה במי קרח, סדנאות נשימה וקורס מדריכים. גישה אינטגרטיבית לחוסן, ויסות רגשי ונוכחות עמוקה." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://ice-israel.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────── TOKENS ─────────────────────────── */
+:root{
+  --ink:#040912;
+  --deep:#06102a;
+  --navy:#0a1a3a;
+  --steel:#1a2a4e;
+  --ice-1:#7dd3fc;
+  --ice-2:#38bdf8;
+  --ice-3:#0ea5e9;
+  --frost:#e0f2fe;
+  --silver:#cbd5e1;
+  --white:#ffffff;
+  --glass:rgba(255,255,255,.06);
+  --glass-str:rgba(255,255,255,.12);
+  --line:rgba(224,242,254,.14);
+  --grad-hero:radial-gradient(1200px 700px at 80% 20%,rgba(56,189,248,.25),transparent 60%),
+              radial-gradient(900px 600px at 20% 80%,rgba(14,165,233,.25),transparent 55%),
+              linear-gradient(180deg,#040912 0%,#06102a 40%,#0a1a3a 100%);
+  --grad-cyan:linear-gradient(135deg,#7dd3fc 0%,#38bdf8 50%,#0ea5e9 100%);
+  --grad-glass:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  --shadow-ice:0 20px 60px -20px rgba(14,165,233,.45),0 10px 40px -15px rgba(56,189,248,.3);
+  --shadow-card:0 40px 80px -30px rgba(4,9,18,.8),0 10px 30px -10px rgba(14,165,233,.15);
+  --radius-lg:28px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --nav-h:68px;
+  --max:1400px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"Heebo","Assistant",system-ui,sans-serif;
+  background:var(--ink);
+  color:var(--frost);
+  line-height:1.6;
+  font-size:17px;
+  font-weight:400;
+  min-height:100vh;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+::selection{background:var(--ice-2);color:var(--ink)}
+
+h1,h2,h3,h4{font-family:"Heebo",sans-serif;line-height:1.15;letter-spacing:-.01em;color:var(--white);font-weight:800}
+h1{font-size:clamp(2.4rem,6vw,5.2rem);font-weight:900;letter-spacing:-.03em}
+h2{font-size:clamp(1.9rem,4.2vw,3.4rem);font-weight:800}
+h3{font-size:clamp(1.35rem,2vw,1.7rem);font-weight:700}
+h4{font-size:clamp(1.1rem,1.3vw,1.25rem);font-weight:700}
+p{color:rgba(224,242,254,.78);font-size:clamp(1rem,1.1vw,1.1rem)}
+
+.container{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:clamp(16px,3vw,32px)}
+
+/* ─────────────────────────── SNOWFLAKES CANVAS ─────────────────────────── */
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;opacity:.45}
+
+/* ─────────────────────────── NAV ─────────────────────────── */
+.nav{
+  position:fixed;inset-inline:0;top:0;height:var(--nav-h);z-index:80;
+  display:flex;align-items:center;
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  background:linear-gradient(180deg,rgba(6,16,42,.6),rgba(6,16,42,.2));
+  border-bottom:1px solid transparent;
+  transition:all .35s var(--ease);
+}
+.nav.scrolled{
+  background:rgba(6,16,42,.78);
+  border-bottom-color:var(--line);
+  box-shadow:0 10px 40px -15px rgba(0,0,0,.5);
+}
+.nav .container{display:flex;align-items:center;gap:24px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.15rem;letter-spacing:.04em;color:var(--white)}
+.brand img{width:48px;height:auto;filter:drop-shadow(0 4px 14px rgba(56,189,248,.5))}
+.brand-name{display:flex;flex-direction:column;line-height:1}
+.brand-name small{font-size:.7rem;font-weight:500;color:var(--ice-1);letter-spacing:.2em;margin-top:4px}
+
+.menu{display:flex;align-items:center;gap:2px}
+.menu a{
+  position:relative;padding:10px 16px;font-weight:500;font-size:.95rem;color:var(--frost);
+  border-radius:999px;transition:color .25s var(--ease);
+}
+.menu a:hover{color:var(--ice-1)}
+.menu a::after{
+  content:"";position:absolute;inset:auto 50% 4px 50%;height:2px;width:0;
+  background:var(--grad-cyan);border-radius:2px;transition:width .3s var(--ease),inset .3s var(--ease);
+}
+.menu a:hover::after{inset:auto 20% 4px 20%;width:60%}
+
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;font-weight:600;font-size:.95rem;
+  border-radius:999px;border:1px solid transparent;
+  transition:transform .25s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--grad-cyan);color:#041223;box-shadow:var(--shadow-ice)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 24px 60px -18px rgba(14,165,233,.6)}
+.btn-ghost{color:var(--frost);border-color:var(--line);background:var(--glass)}
+.btn-ghost:hover{background:var(--glass-str);border-color:var(--ice-2);color:var(--white)}
+
+.burger{display:none;width:42px;height:42px;border-radius:12px;background:var(--glass);border:1px solid var(--line);align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:2px;background:var(--frost);position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;inset-inline-start:0;width:20px;height:2px;background:var(--frost);transition:.3s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger.open span{background:transparent}
+.burger.open span::before{top:0;transform:rotate(45deg)}
+.burger.open span::after{top:0;transform:rotate(-45deg)}
+
+@media (max-width:1024px){
+  .menu,.nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .mobile{
+    position:fixed;inset:var(--nav-h) 0 0 0;z-index:79;
+    background:linear-gradient(180deg,rgba(4,9,18,.96),rgba(6,16,42,.98));
+    backdrop-filter:blur(20px);
+    padding:32px 24px 48px;
+    display:flex;flex-direction:column;gap:6px;
+    transform:translateY(-110%);transition:transform .45s var(--ease);
+    overflow-y:auto;
+  }
+  .mobile.open{transform:translateY(0)}
+  .mobile a{padding:18px 20px;font-size:1.15rem;font-weight:600;border-bottom:1px solid var(--line);color:var(--frost)}
+  .mobile a:hover{color:var(--ice-1)}
+  .mobile .btn{margin-top:20px;justify-content:center;width:100%;padding:16px 24px;font-size:1rem}
+}
+
+/* ─────────────────────────── HERO ─────────────────────────── */
+.hero{
+  position:relative;min-height:min(86vh,820px);min-height:min(86dvh,820px);
+  display:flex;align-items:center;
+  background:var(--grad-hero);
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background-image:url('https://ice-israel.com/wp-content/uploads/2025/04/IMG_03611-1.jpg');
+  background-size:cover;background-position:center;
+  filter:brightness(.62) saturate(1.05);
+  transform:scale(1.06);
+  animation:heroZoom 28s var(--ease) infinite alternate;
+}
+@keyframes heroZoom{from{transform:scale(1.06)}to{transform:scale(1.12)}}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(1100px 600px at 80% 30%,rgba(56,189,248,.2),transparent 60%),
+    linear-gradient(180deg,rgba(4,9,18,.15) 0%,rgba(6,16,42,.45) 45%,rgba(4,9,18,.9) 100%);
+}
+.hero .container{position:relative;z-index:3;padding-block:calc(var(--nav-h) + 48px) 72px;width:100%}
+
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 16px 8px 14px;border-radius:999px;
+  background:var(--glass);border:1px solid var(--line);
+  font-size:.85rem;color:var(--ice-1);font-weight:500;letter-spacing:.02em;
+  backdrop-filter:blur(12px);
+  margin-bottom:28px;
+}
+.badge::before{content:"❆";color:var(--ice-1);font-size:1rem;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.hero h1{max-width:18ch;margin-bottom:18px}
+.hero h1 .gradient{
+  background:var(--grad-cyan);-webkit-background-clip:text;background-clip:text;color:transparent;
+  display:inline-block;
+}
+.hero p.lead{max-width:58ch;font-size:clamp(1.05rem,1.35vw,1.2rem);color:rgba(224,242,254,.88);margin-bottom:28px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.badge{margin-bottom:20px}
+.hero-meta{
+  display:flex;gap:28px;margin-top:40px;flex-wrap:wrap;
+  padding-top:24px;border-top:1px solid var(--line);
+  max-width:640px;
+}
+.hero-meta .stat{display:flex;flex-direction:column;gap:2px}
+.hero-meta .n{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:900;color:var(--white);letter-spacing:-.02em}
+.hero-meta .n .plus{color:var(--ice-1)}
+.hero-meta .l{font-size:.85rem;color:var(--silver);font-weight:500}
+
+.hero-scroll{position:absolute;inset-inline:0;bottom:24px;z-index:3;display:flex;justify-content:center;gap:10px;color:var(--ice-1);font-size:.8rem;letter-spacing:.3em;font-weight:500}
+.hero-scroll::after{content:"";width:1px;height:44px;background:linear-gradient(180deg,var(--ice-1),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─────────────────────────── SECTIONS ─────────────────────────── */
+section{position:relative;padding-block:clamp(52px,7vw,96px)}
+.section-head{max-width:860px;margin-inline:auto;text-align:center;margin-bottom:clamp(28px,3.5vw,52px)}
+.kicker{
+  display:inline-block;padding:6px 14px;border-radius:999px;
+  background:rgba(56,189,248,.12);color:var(--ice-1);
+  font-size:.8rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:18px;border:1px solid rgba(56,189,248,.25);
+}
+.section-head h2{margin-bottom:16px}
+.section-head p{max-width:62ch;margin-inline:auto;font-size:clamp(1rem,1.15vw,1.15rem)}
+
+/* Partners strip (logos) */
+.partners{padding-block:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(4,9,18,.6),rgba(10,26,58,.4))}
+.partners-label{text-align:center;font-size:.78rem;letter-spacing:.4em;color:var(--silver);font-weight:500;margin-bottom:20px;text-transform:uppercase}
+.partners-row{display:flex;gap:clamp(24px,5vw,60px);align-items:center;justify-content:center;flex-wrap:wrap;filter:grayscale(1) opacity(.75);transition:.4s}
+.partners-row:hover{filter:grayscale(0) opacity(1)}
+.partners-row img{height:clamp(36px,4vw,58px);width:auto;object-fit:contain}
+
+/* ─────────────────────────── ABOUT ─────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.about-media{position:relative}
+.about-media .photo{
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-card);
+  transform:perspective(1000px) rotateY(-4deg) rotateX(2deg);
+  transition:transform .6s var(--ease);
+  aspect-ratio:4/5;
+}
+.about-media .photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.about-media:hover .photo{transform:perspective(1000px) rotateY(0) rotateX(0)}
+.about-media:hover .photo img{transform:scale(1.05)}
+.about-media .chip{
+  position:absolute;z-index:3;
+  padding:16px 22px;border-radius:20px;
+  background:rgba(6,16,42,.8);backdrop-filter:blur(20px);
+  border:1px solid var(--line);box-shadow:var(--shadow-card);
+  display:flex;align-items:center;gap:12px;
+  font-weight:600;color:var(--frost);
+}
+.about-media .chip .ico{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--grad-cyan);display:grid;place-items:center;
+  color:#041223;font-weight:800;font-size:1.15rem;
+}
+.about-media .chip-1{top:16px;inset-inline-start:-14px}
+.about-media .chip-2{bottom:22px;inset-inline-end:-14px}
+.about-media .chip strong{display:block;font-size:.95rem;line-height:1.2}
+.about-media .chip small{font-size:.78rem;color:var(--silver);font-weight:500}
+
+.about-body h2{margin-bottom:20px}
+.about-body .lead{color:var(--frost);font-size:clamp(1.08rem,1.3vw,1.22rem);font-weight:500;margin-bottom:20px;line-height:1.55}
+.about-body p{margin-bottom:16px;color:rgba(224,242,254,.78)}
+.about-body .creds{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
+.cred{
+  padding:14px 18px;border-radius:14px;
+  background:var(--glass);border:1px solid var(--line);
+  display:flex;align-items:center;gap:12px;font-size:.92rem;font-weight:500;color:var(--frost);
+}
+.cred::before{content:"✓";width:28px;height:28px;border-radius:50%;background:var(--grad-cyan);color:#041223;display:grid;place-items:center;font-size:.85rem;font-weight:800;flex-shrink:0}
+
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}.about-media{max-width:420px;margin-inline:auto}}
+
+/* ─────────────────────────── SERVICE CARDS ─────────────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+.service{
+  position:relative;overflow:hidden;
+  border-radius:var(--radius-lg);
+  background:linear-gradient(180deg,rgba(10,26,58,.85),rgba(4,9,18,.95));
+  border:1px solid var(--line);
+  min-height:560px;display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease);
+  isolation:isolate;
+}
+.service:hover{transform:translateY(-8px);border-color:rgba(56,189,248,.45);box-shadow:var(--shadow-card)}
+.service .img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.service .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.service:hover .img img{transform:scale(1.08)}
+.service .img::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(4,9,18,.8) 100%);
+}
+.service .body{padding:28px clamp(20px,2.4vw,32px) 32px;display:flex;flex-direction:column;gap:14px;flex:1}
+.service .tag{
+  position:absolute;top:18px;inset-inline-end:18px;z-index:3;
+  padding:6px 12px;border-radius:999px;
+  background:rgba(6,16,42,.75);backdrop-filter:blur(10px);
+  font-size:.75rem;font-weight:600;color:var(--ice-1);
+  border:1px solid rgba(56,189,248,.35);
+}
+.service h3{color:var(--white)}
+.service p{color:rgba(224,242,254,.72);font-size:.98rem;line-height:1.6;flex:1}
+.service .more{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--ice-1);font-weight:600;font-size:.95rem;margin-top:8px;
+  transition:gap .25s var(--ease);
+}
+.service .more::after{content:"←";font-size:1.1rem;transition:transform .25s var(--ease)}
+.service:hover .more{gap:14px}
+.service:hover .more::after{transform:translateX(-4px)}
+/* ice shimmer */
+.service::before{
+  content:"";position:absolute;inset:-1px;z-index:-1;opacity:0;
+  background:conic-gradient(from 90deg,transparent,rgba(125,211,252,.5),transparent 30%);
+  transition:opacity .6s var(--ease);
+  animation:rotShine 7s linear infinite;
+  border-radius:inherit;
+}
+.service:hover::before{opacity:1}
+@keyframes rotShine{to{transform:rotate(360deg)}}
+
+@media (max-width:980px){.services-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.services-grid{grid-template-columns:1fr}.service{min-height:auto}}
+
+/* ─────────────────────────── SHOWCASE BAND ─────────────────────────── */
+.band{
+  position:relative;overflow:hidden;
+  background:var(--grad-hero);
+  border-radius:0;
+  padding-block:clamp(56px,7vw,100px);
+}
+.band-bg{position:absolute;inset:0;opacity:.4;z-index:0}
+.band-bg img{width:100%;height:100%;object-fit:cover}
+.band-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,9,18,.7),rgba(6,16,42,.9))}
+.band-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.band-grid .media{aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card)}
+.band-grid .media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.band-grid .media:hover img{transform:scale(1.06)}
+.band-grid h2{margin-bottom:18px}
+.band-grid p{margin-bottom:16px}
+.band .list{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.band .list li{list-style:none;padding:14px 18px;border-radius:14px;background:var(--glass);border:1px solid var(--line);display:flex;align-items:center;gap:12px;color:var(--frost);font-weight:500}
+.band .list li::before{content:"❄";color:var(--ice-1);font-size:1.15rem}
+@media (max-width:900px){.band-grid{grid-template-columns:1fr}.band-grid .media{max-width:480px;margin-inline:auto}}
+
+/* ─────────────────────────── TESTIMONIALS ─────────────────────────── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi{
+  padding:28px;border-radius:var(--radius-md);
+  background:linear-gradient(180deg,rgba(10,26,58,.8),rgba(4,9,18,.85));
+  border:1px solid var(--line);
+  position:relative;display:flex;flex-direction:column;gap:16px;
+  transition:transform .4s var(--ease),border-color .4s var(--ease);
+}
+.testi:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.4)}
+.testi::before{content:"\201D";position:absolute;top:12px;inset-inline-start:18px;font-size:4.5rem;line-height:1;color:var(--ice-3);opacity:.25;font-family:serif}
+.testi p{color:rgba(224,242,254,.82);font-size:.98rem;line-height:1.65;font-weight:400}
+.testi-person{display:flex;align-items:center;gap:12px;margin-top:auto}
+.testi-person img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--ice-2)}
+.testi-person .who strong{display:block;color:var(--white);font-weight:700}
+.testi-person .who small{color:var(--silver);font-size:.82rem}
+.testi-stars{color:var(--ice-1);letter-spacing:3px;font-size:.9rem}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.testi-grid{grid-template-columns:1fr}}
+
+/* ─────────────────────────── BLOG ─────────────────────────── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.post{
+  border-radius:var(--radius-md);overflow:hidden;
+  background:rgba(10,26,58,.5);border:1px solid var(--line);
+  display:flex;flex-direction:column;
+  transition:transform .4s var(--ease),border-color .4s var(--ease);
+}
+.post:hover{transform:translateY(-4px);border-color:rgba(56,189,248,.4)}
+.post .img{aspect-ratio:16/10;overflow:hidden}
+.post .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.post:hover .img img{transform:scale(1.06)}
+.post .body{padding:22px 22px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.post .date{font-size:.78rem;color:var(--ice-1);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.post h3{font-size:1.2rem;color:var(--white);line-height:1.35}
+.post p{font-size:.94rem;color:rgba(224,242,254,.7);flex:1}
+.post .more{color:var(--ice-1);font-weight:600;font-size:.9rem;margin-top:6px;display:inline-flex;align-items:center;gap:6px}
+.post .more::after{content:"←";transition:transform .25s var(--ease)}
+.post:hover .more::after{transform:translateX(-4px)}
+@media (max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.blog-grid{grid-template-columns:1fr}}
+
+/* ─────────────────────────── CONTACT ─────────────────────────── */
+.contact{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(800px 500px at 20% 20%,rgba(56,189,248,.25),transparent 60%),
+    radial-gradient(600px 400px at 80% 80%,rgba(14,165,233,.2),transparent 55%),
+    linear-gradient(180deg,#06102a 0%,#040912 100%);
+  border-top:1px solid var(--line);
+}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+.contact-info h2{margin-bottom:18px}
+.contact-info p{margin-bottom:24px}
+.cc{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.cc a{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 22px;border-radius:16px;
+  background:var(--glass);border:1px solid var(--line);
+  font-weight:600;color:var(--frost);
+  transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+}
+.cc a:hover{transform:translateX(-4px);border-color:var(--ice-2);background:var(--glass-str)}
+.cc .ico{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--grad-cyan);color:#041223;display:grid;place-items:center;
+  font-size:1.3rem;font-weight:800;flex-shrink:0;
+}
+.cc strong{display:block;color:var(--white);font-size:1rem}
+.cc small{display:block;color:var(--silver);font-size:.85rem;font-weight:400;margin-top:2px}
+
+.form{
+  padding:clamp(28px,3vw,40px);border-radius:var(--radius-lg);
+  background:rgba(10,26,58,.5);border:1px solid var(--line);
+  backdrop-filter:blur(14px);
+  box-shadow:var(--shadow-card);
+}
+.form h3{margin-bottom:8px}
+.form .hint{font-size:.92rem;color:var(--silver);margin-bottom:24px}
+.field{margin-bottom:16px;position:relative}
+.field label{display:block;font-size:.85rem;color:var(--ice-1);margin-bottom:8px;font-weight:500}
+.field input,.field textarea{
+  width:100%;padding:14px 16px;
+  background:rgba(4,9,18,.6);border:1px solid var(--line);
+  border-radius:12px;color:var(--white);font-family:inherit;font-size:.98rem;
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease);
+}
+.field input:focus,.field textarea:focus{outline:0;border-color:var(--ice-2);box-shadow:0 0 0 4px rgba(56,189,248,.14)}
+.field textarea{min-height:130px;resize:vertical}
+.form .btn{width:100%;justify-content:center;padding:16px;font-size:1rem;margin-top:6px}
+.form .check{display:flex;gap:10px;align-items:center;font-size:.85rem;color:var(--silver);margin:14px 0 4px}
+.form .check input{accent-color:var(--ice-2)}
+
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+
+/* ─────────────────────────── FOOTER ─────────────────────────── */
+footer{
+  padding:64px 0 32px;border-top:1px solid var(--line);
+  background:linear-gradient(180deg,#040912,#02060f);
+}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.foot-brand img{width:56px}
+.foot-brand strong{font-size:1.15rem;color:var(--white)}
+.foot-brand small{display:block;color:var(--ice-1);font-size:.75rem;letter-spacing:.2em;margin-top:4px}
+.foot-grid p{font-size:.92rem;color:rgba(224,242,254,.7);line-height:1.65}
+.foot-grid h4{color:var(--white);font-size:.95rem;letter-spacing:.08em;margin-bottom:16px;text-transform:uppercase;font-weight:700}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-grid ul a{font-size:.93rem;color:rgba(224,242,254,.7);transition:color .2s}
+.foot-grid ul a:hover{color:var(--ice-1)}
+.social{display:flex;gap:10px;margin-top:18px}
+.social a{
+  width:42px;height:42px;border-radius:12px;
+  background:var(--glass);border:1px solid var(--line);
+  display:grid;place-items:center;font-size:1.05rem;color:var(--frost);
+  transition:.25s var(--ease);
+}
+.social a:hover{transform:translateY(-3px);border-color:var(--ice-2);color:var(--white);background:rgba(56,189,248,.15)}
+.foot-bot{
+  padding-top:28px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:.85rem;color:var(--silver);
+}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+
+/* ─────────────────────────── FLOATING BUTTONS ─────────────────────────── */
+.float{
+  position:fixed;inset-inline-end:20px;bottom:20px;z-index:70;
+  display:flex;flex-direction:column;gap:10px;
+}
+.float a{
+  width:56px;height:56px;border-radius:50%;
+  display:grid;place-items:center;
+  box-shadow:0 14px 36px -10px rgba(0,0,0,.5);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+  color:var(--white);font-size:1.4rem;
+}
+.float a:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 20px 40px -8px rgba(0,0,0,.6)}
+.float .wa{background:#25D366}
+.float .tel{background:var(--grad-cyan);color:#041223}
+
+/* ─────────────────────────── REVEAL ANIMATIONS ─────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.1s}
+.reveal.delay-2{transition-delay:.22s}
+.reveal.delay-3{transition-delay:.34s}
+.reveal.delay-4{transition-delay:.46s}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .hero-bg{animation:none}
+  #snow{display:none}
+}
+
+/* ─────────────────────────── MOBILE CLEANUP ─────────────────────────── */
+@media (max-width:640px){
+  body{font-size:16px}
+  section{padding-block:54px}
+  .hero{min-height:min(78vh,700px)}
+  .hero .container{padding-block:calc(var(--nav-h) + 32px) 56px}
+  .hero-meta{gap:16px;margin-top:28px;padding-top:18px}
+  .about-media .chip-1{inset-inline-start:-6px}
+  .about-media .chip-2{inset-inline-end:-6px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="snow"></canvas>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="brand" aria-label="I.C.E — גיורא מראני">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-2.png" alt="לוגו גיורא מראני">
+      <span class="brand-name">I.C.E<small>גיורא מראני</small></span>
+    </a>
+    <nav class="menu" aria-label="תפריט ראשי">
+      <a href="#about">על גיורא</a>
+      <a href="#services">סדנאות</a>
+      <a href="#course">קורס מדריכים</a>
+      <a href="#testimonials">המלצות</a>
+      <a href="blog.html">בלוג</a>
+      <a href="#contact">צרו קשר</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#gift">הדרכה חינמית</a>
+      <a class="btn btn-primary" href="https://wa.me/+972523528888" target="_blank" rel="noopener">קבעו סדנה</a>
+      <button class="burger" id="burger" aria-label="פתח תפריט"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile" id="mobile" aria-label="תפריט מובייל">
+  <a href="#about">על גיורא</a>
+  <a href="#services">סדנאות</a>
+  <a href="#course">קורס מדריכים</a>
+  <a href="#testimonials">המלצות</a>
+  <a href="blog.html">בלוג</a>
+  <a href="#contact">צרו קשר</a>
+  <a href="#gift" class="btn btn-ghost">הדרכת נשימה חינמית</a>
+  <a class="btn btn-primary" href="https://wa.me/+972523528888" target="_blank" rel="noopener">שלחו וואטסאפ</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container">
+    <div class="reveal in">
+      <span class="badge">התפתחות אישית • שלווה פנימית • חוסן מנטלי</span>
+      <h1>נשימה שמחממת, <span class="gradient">קור שמעיר</span>, נוכחות שמשנה חיים.</h1>
+      <p class="lead">
+        ברוכים הבאים ל־<strong>I.C.E</strong> של גיורא מראני — חוויות טבילה במי קרח, סדנאות נשימה וקורס מדריכים המבוססים על שיטת ווים הוף.
+        חוויה אינטגרטיבית שמחברת בין גוף, תודעה ונוכחות, ונבנית במדויק עבורכם — לפרטנים, לזוגות, לקבוצות ולאירועי חברה.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#services">בחרו חוויה</a>
+        <a class="btn btn-ghost" href="#gift">קבלו הדרכת נשימה במתנה</a>
+      </div>
+      <div class="hero-meta">
+        <div class="stat"><span class="n">+1,000<span class="plus"> </span></span><span class="l">משתתפים פעילים בסדנאות</span></div>
+        <div class="stat"><span class="n">10<span class="plus">+</span></span><span class="l">שנות הדרכה מקצועית</span></div>
+        <div class="stat"><span class="n">200<span class="plus">+</span></span><span class="l">סדנאות וקורסים הועברו</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" aria-label="הופיעו במותגים">
+  <div class="container">
+    <div class="partners-label">הופיעו בתקשורת ועבדו עם</div>
+    <div class="partners-row reveal">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/07/download-1.jpeg" alt="כאן 12">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/07/download-2.png" alt="קשת 12">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/07/images.jpeg" alt="ערוץ 12">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/07/images-1.png" alt="ישראל היום">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%A0%D7%A1%D7%A4%D7%A8%D7%A1%D7%95.png" alt="נספרסו">
+      <img src="https://ice-israel.com/wp-content/uploads/2025/01/%D7%9C%D7%95%D7%92%D7%95-%D7%95%D7%95%D7%9C%D7%98.jpg" alt="וולט">
+      <img src="https://ice-israel.com/wp-content/uploads/2025/01/%D7%9C%D7%95%D7%92%D7%95-%D7%A4%D7%99%D7%99%D7%91%D7%A8.png" alt="פייבר">
+      <img src="https://ice-israel.com/wp-content/uploads/2024/08/logo_idfwo_he.png" alt="צה״ל">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <div class="photo">
+          <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%91%D7%97%D7%95%D7%A5-%D7%91%D7%A9%D7%9C%D7%92.jpg" alt="גיורא מראני בשלג">
+        </div>
+        <div class="chip chip-1">
+          <div class="ico">WH</div>
+          <div><strong>Wim Hof Method</strong><small>מוסמך בהכשרה ישירה</small></div>
+        </div>
+        <div class="chip chip-2">
+          <div class="ico">I</div>
+          <div><strong>I.C.E Israel</strong><small>ממייסדי איגוד תרפיית הקור</small></div>
+        </div>
+      </div>
+      <div class="about-body reveal delay-1">
+        <span class="kicker">על גיורא</span>
+        <h2>תלמיד של הגוף, של הנשימה ושל הרגעים המאתגרים</h2>
+        <p class="lead">
+          המסע שלי עם נשימה וחשיפה לקור התחיל מתוך חיפוש אישי — אחרי יציבות, חיבור ויכולת להתמודד עם עומס רגשי והרגלים שלא שירתו אותי.
+        </p>
+        <p>
+          התרגול העקבי עזר לי להיגמל מעישון ומסמים, לא מתוך מאבק אלא דרך חיזוק המודעות והבחירה. למדתי שאפשר להישאר בתוך אי־נוחות, לנשום דרכה ולצאת ממנה מחוזק. מהחוויה הזו נולדה גישת <strong>I.C.E</strong>, המחברת בין חשיפה לקור, נשימה מודעת, התפתחות אישית ומיינדפולנס.
+        </p>
+        <p>
+          ביחד עם אשתי ואהובתי טל, אני מוביל את קורס הכשרת המדריכים במרכז האקדמי לוינסקי־וינגייט, מייסד הבריכה הטיפולית "הנביעה", ומהחלוצים בישראל בעבודה מקצועית עם אמבטיות קרח.
+        </p>
+        <div class="creds">
+          <div class="cred">הכשרה בינלאומית Wim Hof</div>
+          <div class="cred">הידרותרפיה וטיפולי מים</div>
+          <div class="cred">אימון מנטלי ורגשי</div>
+          <div class="cred">הוראת יוגה ומיינדפולנס</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">הסדנאות שלנו</span>
+      <h2>שלוש דרכים לפגוש את עצמכם</h2>
+      <p>אם אתם מחפשים חוויה מהנה ומעצימה — לעצמכם, לקבוצה שלכם או למי שאתם אוהבים — זה המקום. נעזור לכם להתאים בדיוק את החוויה הנכונה.</p>
+    </div>
+
+    <div class="services-grid">
+      <a class="service reveal" href="#contact">
+        <div class="img">
+          <span class="tag">סדנה</span>
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%98%D7%91%D7%99%D7%9C%D7%94-%D7%91%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%99%D7%AA-%D7%A7%D7%A8%D7%97.jpg" alt="טבילה באמבטיית קרח">
+        </div>
+        <div class="body">
+          <h3>סדנת טבילה במי קרח</h3>
+          <p>לפרטנים ולקבוצות — אצלנו בסטודיו או אליכם עד הבית/משרד. מתאים כאירוע חברה, יום גיבוש, מתנה לאדם אהוב, או פשוט עבורכם. אנחנו דואגים להכל — אתם רק מגיעים.</p>
+          <span class="more">לפרטים והזמנה</span>
+        </div>
+      </a>
+
+      <a class="service reveal delay-1" href="#contact">
+        <div class="img">
+          <span class="tag">נשימה</span>
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%A0%D7%A9%D7%99%D7%9E%D7%94.jpeg" alt="סדנת נשימה">
+        </div>
+        <div class="body">
+          <h3>אוויר לנשמה — סדנת נשימות</h3>
+          <p>סדנה יישומית על עולם הנשימה — איך להוריד סטרס, לשחרר מתח, לשפר מצב רוח, שינה, מערכת חיסונית ועיכול דרך שימוש מודע בנשימה. מתאים גם כהרצאה ארגונית.</p>
+          <span class="more">קבעו הרצאה</span>
+        </div>
+      </a>
+
+      <a class="service reveal delay-2" href="#course">
+        <div class="img">
+          <span class="tag">קורס</span>
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%A7%D7%95%D7%A8%D7%A1-%D7%9E%D7%93%D7%A8%D7%99%D7%9B%D7%99%D7%9D.jpg" alt="קורס מדריכים">
+        </div>
+        <div class="body">
+          <h3>קורס הכשרת מדריכים</h3>
+          <p>שלושה וחצי חודשים של העמקה — שני צרכים במקביל: תהליך אישי משמעותי דרך הקרח והנשימה, ובמקביל קבלת כל הידע הנדרש להפוך למדריכים מקצועיים, ענווים וקשובים.</p>
+          <span class="more">פרטים מלאים</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE BAND -->
+<section id="course" class="band">
+  <div class="band-bg" aria-hidden="true">
+    <img src="https://ice-israel.com/wp-content/uploads/2024/07/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A0%D7%97%D7%94.jpg" alt="">
+  </div>
+  <div class="container">
+    <div class="band-grid">
+      <div class="media reveal">
+        <img src="https://ice-israel.com/wp-content/uploads/2025/01/%D7%A1%D7%93%D7%A0%D7%AA-%D7%98%D7%91%D7%99%D7%9C%D7%94-%D7%91%D7%9E%D7%99-%D7%A7%D7%A8%D7%97-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-%D7%A2%D7%9D-%D7%99%D7%A2%D7%9C-%D7%91%D7%A8-%D7%96%D7%95%D7%94%D7%A8.jpg" alt="סדנת טבילה במי קרח">
+      </div>
+      <div class="reveal delay-1">
+        <span class="kicker">קורס מדריכים</span>
+        <h2>שלושה וחצי חודשים שישנו אתכם — ויכשירו אתכם להוביל</h2>
+        <p>
+          קורס העמקה מושקע ומהנה. לא רק לומדים — עוברים. יוצאים עם ארגז כלים עשיר, חיבור עמוק יותר לעצמי, והבנה מעשית כיצד להוביל אחרים אל הקרח והנשימה בביטחון, ענווה והקשבה.
+        </p>
+        <ul class="list">
+          <li>התנסות אישית ובונה־ביטחון באמבטיות קרח ונשימות</li>
+          <li>יסודות פיזיולוגיים, תיאוריה ומבנה סדנה</li>
+          <li>בטיחות, עבודה עם מערכת העצבים ויסות רגשי</li>
+          <li>תעודת מדריך במוסד מוכר (לוינסקי־וינגייט)</li>
+          <li>ליווי וקהילה פעילה של בוגרים</li>
+        </ul>
+        <div class="hero-cta" style="margin-top:28px">
+          <a class="btn btn-primary" href="#contact">להרשמה ופרטים</a>
+          <a class="btn btn-ghost" href="https://wa.me/+972523528888" target="_blank" rel="noopener">שאלות? דברו איתי</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">המלצות משתתפים</span>
+      <h2>מה אומרים מי שכבר טבלו איתנו</h2>
+    </div>
+    <div class="testi-grid">
+      <article class="testi reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p>גיורא מעביר חוויה עוצמתית, בגובה העיניים, עם ידע מקצועי עצום וחום אנושי בלתי רגיל. יצאתי מהסדנה אדם אחר — יותר רגוע, יותר בחיבור לעצמי, יותר מחוסן להתמודד עם היום־יום.</p>
+        <div class="testi-person">
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%AA%D7%9E%D7%95%D7%A0%D7%94-%D7%93%D7%95%D7%A8%D7%95%D7%9F-%D7%9E%D7%93%D7%9C%D7%99.jpg" alt="דורון מדלי">
+          <div class="who"><strong>דורון מדלי</strong><small>בוגר קורס מדריכים</small></div>
+        </div>
+      </article>
+
+      <article class="testi reveal delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p>הגעתי בספק, יצאתי מאוהבת. המקצועיות של גיורא והעדינות שבה הוא מלווה כל משתתפת לתוך החוויה — זה משהו אחר. ההורדת מתח והשחרור שהרגשתי היו מחוץ לגבולות המילים.</p>
+        <div class="testi-person">
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%AA%D7%9E%D7%95%D7%A0%D7%94-%D7%99%D7%A2%D7%9C-%D7%91%D7%A8-%D7%96%D7%95%D7%94%D7%A8.jpg" alt="יעל בר זוהר">
+          <div class="who"><strong>יעל בר זוהר</strong><small>סדנת נשימות</small></div>
+        </div>
+      </article>
+
+      <article class="testi reveal delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p>הזמנו את גיורא לאירוע חברה — הצוות כולו עדיין מדבר על זה. הרחקת פחדים, צחוקים, חיבור אמיתי, ונשימות שהשאירו את כולם עם חיוך ואנרגיה לכמה ימים קדימה. ממליץ בחום.</p>
+        <div class="testi-person">
+          <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%AA%D7%9E%D7%95%D7%A0%D7%94-%D7%9C%D7%99%D7%A8%D7%9F-%D7%9B%D7%95%D7%94%D7%A0%D7%A8.jpg" alt="לירן כוהנר">
+          <div class="who"><strong>לירן כוהנר</strong><small>אירוע גיבוש חברה</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GIFT BAND -->
+<section id="gift" class="band">
+  <div class="band-bg" aria-hidden="true">
+    <img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%9E%D7%AA%D7%A0%D7%94.jpeg" alt="">
+  </div>
+  <div class="container">
+    <div class="band-grid">
+      <div class="reveal">
+        <span class="kicker">מתנה עבורכם</span>
+        <h2>הדרכות נשימה ומדיטציה — חינם, באהבה</h2>
+        <p>
+          אוסף של הדרכות קצרות וארוכות יותר: מדיטציות העצמה ומודעות עצמית, נשימות מרגיעות ומעצימות לתחילת היום או לסיומו. בחרו מה שמתאים לכם, ולחיצה אחת תתחילו לתרגל.
+        </p>
+        <div class="hero-cta" style="margin-top:24px">
+          <a class="btn btn-primary" href="https://wa.me/+972523528888?text=%D7%94%D7%99%D7%99%20%D7%92%D7%99%D7%95%D7%A8%D7%90%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%90%D7%AA%20%D7%94%D7%93%D7%A8%D7%9B%D7%95%D7%AA%20%D7%94%D7%A0%D7%A9%D7%99%D7%9E%D7%94%20%D7%94%D7%97%D7%99%D7%A0%D7%9E%D7%99%D7%95%D7%AA" target="_blank" rel="noopener">קבלו לוואטסאפ</a>
+          <a class="btn btn-ghost" href="#contact">בקשו במייל</a>
+        </div>
+      </div>
+      <div class="media reveal delay-1">
+        <img src="https://ice-israel.com/wp-content/uploads/2025/01/%D7%AA%D7%9E%D7%95%D7%A0%D7%AA-%D7%A7%D7%90%D7%91%D7%A8-%D7%9C%D7%A0%D7%A9%D7%99%D7%9E%D7%95%D7%AA-%D7%90%D7%AA%D7%A8-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99.jpg" alt="הדרכות נשימה">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">בלוג</span>
+      <h2>תוכן ומאמרים</h2>
+      <p>מאמרים מקצועיים וסיפורים מהשטח — על קרח, נשימה, בריאות מנטלית ויציבות פנימית.</p>
+    </div>
+    <div class="blog-grid">
+      <a class="post reveal" href="posts/temperature.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%A2%D7%99%D7%A6%D7%95%D7%91-%D7%9C%D7%9C%D7%90-%D7%A9%D7%9D-3.png" alt=""></div>
+        <div class="body">
+          <span class="date">מדריך מקצועי</span>
+          <h3>מהי הטמפרטורה המומלצת לאמבטיית קרח?</h3>
+          <p>אמבטיות קרח הפכו לכלי פופולרי לשיפור הבריאות הפיזית והמנטלית. רבים אינם מודעים לכך שיש טווח רחב של טמפרטורות, וכל אחת משרתת מטרה אחרת.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+      <a class="post reveal delay-1" href="posts/company-events.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2025/02/%D7%98%D7%91%D7%99%D7%9C%D7%94-%D7%91%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%99%D7%AA-%D7%A7%D7%A8%D7%97.jpg" alt=""></div>
+        <div class="body">
+          <span class="date">מהשטח</span>
+          <h3>אמבטיות קרח לאירועי חברה</h3>
+          <p>במהלך השנים האחרונות הנחיתי עשרות סדנאות אמבטיות קרח ונשימה לאירועי חברה — וזו תמיד חוויה מרגשת. אלה התובנות החשובות ביותר.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+      <a class="post reveal delay-2" href="posts/why-ice.html">
+        <div class="img"><img src="https://ice-israel.com/wp-content/uploads/2024/07/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%91%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%99%D7%AA-%D7%A7%D7%A8%D7%97-%D7%9E%D7%9C%D7%9E%D7%A2%D7%9C%D7%94-e1737545153251.jpg" alt=""></div>
+        <div class="body">
+          <span class="date">מדע ופרקטיקה</span>
+          <h3>טבילות באמבטיות קרח – למה כולם עושים את זה?</h3>
+          <p>טבילה במים קרים עשויה להיראות כמו טרנד חדש, אך זו שיטה עתיקה ששימשה תרבויות רבות. ננסה להבין מה עומד מאחורי ה־hype, וגם מאחורי ההצלחה האמיתית.</p>
+          <span class="more">המשך קריאה</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <a class="btn btn-ghost" href="blog.html">לכל הפוסטים בבלוג</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="kicker">צרו קשר</span>
+        <h2>טבלו אצלנו</h2>
+        <p>
+          התקשרו, שלחו וואטסאפ, או השאירו פרטים — נחזור אליכם באהבה ובמקצועיות. נשמח לעזור להתאים לכם את החוויה המדויקת ביותר, לפרטנים, לזוגות, לקבוצות ולאירועי חברה.
+        </p>
+        <div class="cc">
+          <a href="tel:+972523528888"><div class="ico">☏</div><div><strong>052-3528888</strong><small>להתקשר ישירות</small></div></a>
+          <a href="https://wa.me/+972523528888" target="_blank" rel="noopener"><div class="ico" style="background:#25D366;color:#fff">✎</div><div><strong>שליחת וואטסאפ</strong><small>מענה מהיר במהלך היום</small></div></a>
+          <a href="https://www.instagram.com/giora_marani/" target="_blank" rel="noopener"><div class="ico">◎</div><div><strong>Instagram · @giora_marani</strong><small>לצפייה בסדנאות וברגעים מרגשים</small></div></a>
+        </div>
+      </div>
+
+      <form class="form reveal delay-1" onsubmit="event.preventDefault();const w='https://wa.me/+972523528888?text='+encodeURIComponent('היי גיורא! השם שלי '+this.name.value+' ('+(this.phone.value||'')+'). '+(this.message.value||''));window.open(w,'_blank');">
+        <h3>השאירו פרטים ונחזור אליכם</h3>
+        <p class="hint">או לחצו שליחה — והשיחה תיפתח בוואטסאפ אוטומטית.</p>
+        <div class="field"><label>שם מלא</label><input name="name" required placeholder="השם שלך"></div>
+        <div class="field"><label>טלפון</label><input name="phone" type="tel" required placeholder="050-1234567"></div>
+        <div class="field"><label>מייל</label><input name="email" type="email" placeholder="you@example.com"></div>
+        <div class="field"><label>מה תרצו לספר לנו?</label><textarea name="message" placeholder="סדנה, קורס, אירוע חברה, שאלה..."></textarea></div>
+        <label class="check"><input type="checkbox" checked>שלחו לי גם הדרכות חינמיות על נשימה, שחרור מתח ואיזון גוף־נפש</label>
+        <button class="btn btn-primary" type="submit">שליחה</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-2.png" alt="">
+          <div><strong>I.C.E</strong><small>גיורא מראני</small></div>
+        </div>
+        <p>חוויות קרח, נשימה ונוכחות — כלי עבודה מעשיים לבריאות, חוסן ואיזון. לפרטנים, לקבוצות ולאירועי חברה.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/giora_marani/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+          <a href="https://www.facebook.com/people/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%95%D7%AA-%D7%A7%D7%A8%D7%97-%D7%A0%D7%A9%D7%99%D7%9E%D7%95%D7%AA-%D7%95%D7%9E%D7%99%D7%99%D7%A0%D7%93%D7%A1%D7%98/61557371516015/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://wa.me/+972523528888" target="_blank" rel="noopener" aria-label="WhatsApp">✎</a>
+        </div>
+      </div>
+      <div>
+        <h4>סדנאות</h4>
+        <ul>
+          <li><a href="#services">טבילה במי קרח</a></li>
+          <li><a href="#services">אוויר לנשמה — נשימות</a></li>
+          <li><a href="#course">קורס מדריכים</a></li>
+          <li><a href="#services">אירועי חברה</a></li>
+          <li><a href="#services">ימי גיבוש</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>תוכן</h4>
+        <ul>
+          <li><a href="blog.html">בלוג</a></li>
+          <li><a href="#gift">הדרכות חינמיות</a></li>
+          <li><a href="#testimonials">המלצות</a></li>
+          <li><a href="#about">אודות</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>יצירת קשר</h4>
+        <ul>
+          <li><a href="tel:+972523528888">052-3528888</a></li>
+          <li><a href="https://wa.me/+972523528888" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="#contact">טופס יצירת קשר</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div>© 2025 כל הזכויות שמורות לגיורא מראני · I.C.E Israel</div>
+      <div>אתר מעוצב באהבה · חוויית קרח, נשימה ונוכחות</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING -->
+<div class="float">
+  <a class="wa" href="https://wa.me/+972523528888" target="_blank" rel="noopener" aria-label="WhatsApp">✎</a>
+  <a class="tel" href="tel:+972523528888" aria-label="Call">☏</a>
+</div>
+
+<script>
+/* ─── Reveal on Scroll ─── */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  });
+},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ─── Nav on scroll ─── */
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>24);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+/* ─── Mobile menu ─── */
+const burger=document.getElementById('burger');
+const mobile=document.getElementById('mobile');
+burger.addEventListener('click',()=>{
+  const open=burger.classList.toggle('open');
+  mobile.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open');mobile.classList.remove('open');document.body.style.overflow='';
+}));
+
+/* ─── Snowflakes canvas (calm, subtle) ─── */
+(() => {
+  const c = document.getElementById('snow');
+  if(!c) return;
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce) return;
+  const ctx = c.getContext('2d');
+  let w, h, dpr, flakes=[];
+  const LAYER_COUNT = 2;
+  const DENSITY = window.innerWidth < 640 ? 10 : 22;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    w = c.width = window.innerWidth * dpr;
+    h = c.height = window.innerHeight * dpr;
+    c.style.width = window.innerWidth+'px';
+    c.style.height = window.innerHeight+'px';
+    buildFlakes();
+  }
+  function rand(a,b){return a+Math.random()*(b-a)}
+  function buildFlakes(){
+    flakes = [];
+    for(let l=0; l<LAYER_COUNT; l++){
+      const count = Math.round(DENSITY * (l===0 ? 0.6 : 0.4));
+      for(let i=0;i<count;i++){
+        flakes.push({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          r: (l===0 ? rand(.6,1.2) : rand(1.2,2.0)) * dpr,
+          vy: (l===0 ? rand(.08,.18) : rand(.18,.38)) * dpr,
+          vx: rand(-.2,.2) * dpr,
+          a: (l===0 ? rand(.18,.32) : rand(.32,.5)),
+          sw: rand(0,Math.PI*2),
+          sws: rand(.002,.008),
+          layer: l,
+        });
+      }
+    }
+  }
+  function drawFlake(f){
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(224,242,254,${f.a})`;
+    ctx.shadowColor = 'rgba(125,211,252,.35)';
+    ctx.shadowBlur = f.layer===1 ? 6 : 3;
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+    ctx.fill();
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    for(let f of flakes){
+      f.sw += f.sws;
+      f.x += f.vx + Math.sin(f.sw)*0.18*dpr;
+      f.y += f.vy;
+      if(f.y > h + 10) { f.y = -10; f.x = Math.random()*w; }
+      if(f.x > w + 20) f.x = -20;
+      if(f.x < -20) f.x = w + 20;
+      drawFlake(f);
+    }
+    requestAnimationFrame(tick);
+  }
+  resize();
+  tick();
+  let to;
+  window.addEventListener('resize',()=>{clearTimeout(to); to=setTimeout(resize,200)});
+})();
+
+/* ─── Parallax tiny nudge on hero ─── */
+(()=>{
+  const bg = document.querySelector('.hero-bg');
+  if(!bg) return;
+  window.addEventListener('scroll',()=>{
+    const y = Math.min(window.scrollY, 600);
+    bg.style.transform = `scale(${1.06 + y*0.00025}) translateY(${y*0.15}px)`;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
