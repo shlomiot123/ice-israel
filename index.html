@@ -440,17 +440,13 @@ footer{
   padding:64px 0 32px;border-top:1px solid var(--line);
   background:linear-gradient(180deg,#040912,#02060f);
 }
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px}
-.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.foot-brand img{width:56px}
-.foot-brand strong{font-size:1.15rem;color:var(--white)}
-.foot-brand small{display:block;color:var(--ice-1);font-size:.75rem;letter-spacing:.2em;margin-top:4px}
-.foot-grid p{font-size:.92rem;color:rgba(224,242,254,.7);line-height:1.65}
-.foot-grid h4{color:var(--white);font-size:.95rem;letter-spacing:.08em;margin-bottom:16px;text-transform:uppercase;font-weight:700}
-.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.foot-grid ul a{font-size:.93rem;color:rgba(224,242,254,.7);transition:color .2s}
-.foot-grid ul a:hover{color:var(--ice-1)}
-.social{display:flex;gap:10px;margin-top:18px}
+.foot-inner{display:grid;grid-template-columns:1.4fr 2fr;gap:clamp(32px,5vw,72px);margin-bottom:48px;align-items:start}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.foot-brand img{width:52px}
+.foot-brand strong{font-size:1.1rem;color:var(--white)}
+.foot-brand small{display:block;color:var(--ice-1);font-size:.72rem;letter-spacing:.2em;margin-top:4px}
+.foot-desc{font-size:.9rem;color:rgba(224,242,254,.65);line-height:1.65;margin-bottom:20px}
+.social{display:flex;gap:10px}
 .social a{
   width:42px;height:42px;border-radius:12px;
   background:var(--glass);border:1px solid var(--line);
@@ -458,13 +454,34 @@ footer{
   transition:.25s var(--ease);
 }
 .social a:hover{transform:translateY(-3px);border-color:var(--ice-2);color:var(--white);background:rgba(56,189,248,.15)}
-.foot-bot{
-  padding-top:28px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-size:.85rem;color:var(--silver);
+
+.foot-links{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.foot-col h4{
+  color:var(--ice-1);font-size:.75rem;letter-spacing:.18em;margin-bottom:14px;
+  text-transform:uppercase;font-weight:700;padding-bottom:10px;
+  border-bottom:1px solid var(--line);
 }
-@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:540px){.foot-grid{grid-template-columns:1fr}}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col ul a{
+  font-size:.9rem;color:rgba(224,242,254,.65);transition:color .2s,padding-inline-end .2s;
+  display:block;
+}
+.foot-col ul a:hover{color:var(--ice-1);padding-inline-end:4px}
+
+.foot-bot{
+  padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:.82rem;color:rgba(203,213,225,.55);
+}
+
+@media (max-width:860px){
+  .foot-inner{grid-template-columns:1fr}
+  .foot-links{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:480px){
+  .foot-links{grid-template-columns:1fr 1fr}
+  .foot-links .foot-col:last-child{grid-column:1/-1}
+}
 
 /* ─────────────────────────── FLOATING BUTTONS ─────────────────────────── */
 .float{
@@ -569,7 +586,7 @@ footer{
       </div>
     </div>
   </div>
-  <div class="hero-scroll">SCROLL</div>
+
 </section>
 
 <!-- PARTNERS -->
@@ -850,50 +867,52 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="foot-grid">
+    <div class="foot-inner">
       <div>
         <div class="foot-brand">
           <img src="https://ice-israel.com/wp-content/uploads/2024/08/%D7%9C%D7%95%D7%92%D7%95-%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-2.png" alt="">
           <div><strong>I.C.E</strong><small>גיורא מראני</small></div>
         </div>
-        <p>חוויות קרח, נשימה ונוכחות — כלי עבודה מעשיים לבריאות, חוסן ואיזון. לפרטנים, לקבוצות ולאירועי חברה.</p>
+        <p class="foot-desc">חוויות קרח, נשימה ונוכחות — כלי עבודה מעשיים לבריאות, חוסן ואיזון. לפרטנים, לקבוצות ולאירועי חברה.</p>
         <div class="social">
           <a href="https://www.instagram.com/giora_marani/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
           <a href="https://www.facebook.com/people/%D7%92%D7%99%D7%95%D7%A8%D7%90-%D7%9E%D7%A8%D7%90%D7%A0%D7%99-%D7%90%D7%9E%D7%91%D7%98%D7%99%D7%95%D7%AA-%D7%A7%D7%A8%D7%97-%D7%A0%D7%A9%D7%99%D7%9E%D7%95%D7%AA-%D7%95%D7%9E%D7%99%D7%99%D7%A0%D7%93%D7%A1%D7%98/61557371516015/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
           <a href="https://wa.me/+972523528888" target="_blank" rel="noopener" aria-label="WhatsApp">✎</a>
         </div>
       </div>
-      <div>
-        <h4>סדנאות</h4>
-        <ul>
-          <li><a href="#services">טבילה במי קרח</a></li>
-          <li><a href="#services">אוויר לנשמה — נשימות</a></li>
-          <li><a href="#course">קורס מדריכים</a></li>
-          <li><a href="#services">אירועי חברה</a></li>
-          <li><a href="#services">ימי גיבוש</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>תוכן</h4>
-        <ul>
-          <li><a href="blog.html">בלוג</a></li>
-          <li><a href="#gift">הדרכות חינמיות</a></li>
-          <li><a href="#testimonials">המלצות</a></li>
-          <li><a href="#about">אודות</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>יצירת קשר</h4>
-        <ul>
-          <li><a href="tel:+972523528888">052-3528888</a></li>
-          <li><a href="https://wa.me/+972523528888" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="#contact">טופס יצירת קשר</a></li>
-        </ul>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>סדנאות</h4>
+          <ul>
+            <li><a href="#services">טבילה במי קרח</a></li>
+            <li><a href="#services">אוויר לנשמה</a></li>
+            <li><a href="#course">קורס מדריכים</a></li>
+            <li><a href="#services">אירועי חברה</a></li>
+            <li><a href="#services">ימי גיבוש</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>תוכן</h4>
+          <ul>
+            <li><a href="blog.html">בלוג</a></li>
+            <li><a href="#gift">הדרכות חינמיות</a></li>
+            <li><a href="#testimonials">המלצות</a></li>
+            <li><a href="#about">אודות</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>יצירת קשר</h4>
+          <ul>
+            <li><a href="tel:+972523528888">052-3528888</a></li>
+            <li><a href="https://wa.me/+972523528888" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="#contact">טופס יצירת קשר</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="foot-bot">
       <div>© 2025 כל הזכויות שמורות לגיורא מראני · I.C.E Israel</div>
-      <div>אתר מעוצב באהבה · חוויית קרח, נשימה ונוכחות</div>
+      <div>חוויית קרח, נשימה ונוכחות</div>
     </div>
   </div>
 </footer>
