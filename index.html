@@ -192,14 +192,29 @@ p{color:rgba(224,242,254,.78);font-size:clamp(1rem,1.1vw,1.1rem)}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .badge{margin-bottom:20px}
 .hero-meta{
-  display:flex;gap:28px;margin-top:40px;flex-wrap:wrap;
-  padding-top:24px;border-top:1px solid var(--line);
-  max-width:640px;
+  display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;
+  max-width:680px;
 }
-.hero-meta .stat{display:flex;flex-direction:column;gap:2px}
-.hero-meta .n{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:900;color:var(--white);letter-spacing:-.02em}
-.hero-meta .n .plus{color:var(--ice-1)}
-.hero-meta .l{font-size:.85rem;color:var(--silver);font-weight:500}
+.hero-meta .stat{
+  flex:1;min-width:140px;
+  display:flex;flex-direction:column;gap:4px;
+  padding:18px 22px;
+  background:rgba(6,16,42,.55);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(125,211,252,.18);
+  border-top:2px solid var(--ice-2);
+  border-radius:var(--radius-sm);
+  box-shadow:0 8px 32px -10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.hero-meta .stat:hover{border-color:rgba(125,211,252,.45);box-shadow:0 12px 40px -10px rgba(14,165,233,.3)}
+.hero-meta .n{
+  font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:900;letter-spacing:-.03em;
+  background:var(--grad-cyan);-webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1;
+}
+.hero-meta .n .plus{background:inherit;-webkit-background-clip:text;background-clip:text}
+.hero-meta .l{font-size:.82rem;color:rgba(203,213,225,.75);font-weight:500;line-height:1.35;margin-top:2px}
 
 .hero-scroll{position:absolute;inset-inline:0;bottom:24px;z-index:3;display:flex;justify-content:center;gap:10px;color:var(--ice-1);font-size:.8rem;letter-spacing:.3em;font-weight:500}
 .hero-scroll::after{content:"";width:1px;height:44px;background:linear-gradient(180deg,var(--ice-1),transparent);animation:drop 2s ease-in-out infinite}
@@ -580,7 +595,7 @@ footer{
         <a class="btn btn-ghost" href="#gift">קבלו הדרכת נשימה במתנה</a>
       </div>
       <div class="hero-meta">
-        <div class="stat"><span class="n">+1,000<span class="plus"> </span></span><span class="l">משתתפים פעילים בסדנאות</span></div>
+        <div class="stat"><span class="n">1,000<span class="plus">+</span></span><span class="l">משתתפים פעילים בסדנאות</span></div>
         <div class="stat"><span class="n">10<span class="plus">+</span></span><span class="l">שנות הדרכה מקצועית</span></div>
         <div class="stat"><span class="n">200<span class="plus">+</span></span><span class="l">סדנאות וקורסים הועברו</span></div>
       </div>
@@ -958,7 +973,7 @@ mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   const ctx = c.getContext('2d');
   let w, h, dpr, flakes=[];
   const LAYER_COUNT = 2;
-  const DENSITY = window.innerWidth < 640 ? 10 : 22;
+  const DENSITY = window.innerWidth < 640 ? 24 : 55;
 
   function resize(){
     dpr = Math.min(window.devicePixelRatio||1, 2);
